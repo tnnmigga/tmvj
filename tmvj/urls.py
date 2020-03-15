@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import include
+
+from home.views import homeView
+
+import account
+import contest
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',homeView),
+    path('account/',include('account.urls')),
 ]
