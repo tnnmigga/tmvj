@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="width:40%;margin-left:auto;margin-right:auto;">
+    <form action="." method="POST">
+        {% csrf_token %}
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">账户</span>
+            <input type="text" class="form-control" placeholder="" name="username">
+        </div>
+        <br>
+        {{ usernameExist }}
+        <br>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">密码</span>
+            <input type="password" class="form-control" name="password">
+        </div>
+        <br>
+        
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">确认密码</span>
+            <input type="password" class="form-control" name="confirm">
+        </div>
+        <br>
+        {{ WrongPassword }}
+        <br>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">姓</span>
+            <input type="text" class="form-control" placeholder="" name="first_name">
+        </div>
+        <br>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon span3">名</span>
+            <input type="text" class="form-control" placeholder="" name="last_name">
+        </div>
+        <br>
+        <input type="submit" value="注册" class="btn btn-primary btn-lg">
+    </form>
+</div>
+{% endblock content %}

@@ -38,9 +38,9 @@ def login(request):
             return render(request,'login.html',{'msg':'用户名或密码错误'})
         else:
             auth.login(request,user)
-            return redirect('login')
+            return redirect('contest_list')
 
 def logout(request):
     if request.method == 'POST':
         user = auth.logout(request)
-        return redirect('home')
+        return redirect('login')

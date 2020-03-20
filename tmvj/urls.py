@@ -24,6 +24,7 @@ import contest
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',homeView),
+    path('',homeView,name='home'),
     path('account/',include('account.urls')),
+    path('contest/',include('contest.urls')),
 ]

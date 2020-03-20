@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 def homeView(request):
     if request.user.is_authenticated:
     # 已登录
-        return redirect('login')
+        return redirect('contest_list')
     else:
     # 未登录
         return redirect('login')
