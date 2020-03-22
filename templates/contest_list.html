@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block base %}
 <div class="container">
   <table class="table table-bordered text-center">
     <thead align="center">
@@ -14,7 +14,7 @@
     <tbody>
       {% for contest in contest_list %}
       <tr>
-        <td><a href="#">{{ contest.title }}</a></td>
+        <td><a href="{{ contest.id }}">{{ contest.title }}</a></td>
         <td>{{ contest.start_time }}</td>
         <td>{{ contest.end_time }}</td>
         <td>
@@ -22,7 +22,7 @@
           {% if contest.status == -1 %}
           尚未开始
           {% elif contest.status == 0 %}
-          <a href="">进入</a>
+          <a href="{{ contest.id }}">进入</a>
           {% else %}
           已经结束
           {% endif %}
@@ -48,4 +48,4 @@
 {% endif %}
 
 
-{% endblock %}
+{% endblock base %}

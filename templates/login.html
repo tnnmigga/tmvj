@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block content %}
+{% block base %}
 <div style="width:40%;margin-left:auto;margin-right:auto;">
     <form class="bs-example bs-example-form" role="form" action="." method="POST">
         {% csrf_token %}
@@ -21,4 +21,4 @@
     <a href="{% url 'register' %}">注册账号</a> | <a href="#">忘记密码</a>
 </div>
 
-{% endblock content %}
+{% endblock base %}

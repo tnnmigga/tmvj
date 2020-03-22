@@ -21,10 +21,14 @@ from home.views import homeView
 
 import account
 import contest
+import problem
+import vjudge
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',homeView,name='home'),
     path('account/',include('account.urls')),
     path('contest/',include('contest.urls')),
+    path('problem/',include('problem.urls')),
+    #path('vjudge/',include('vjudge.urls')),
 ]

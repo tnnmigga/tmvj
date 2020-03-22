@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block base %}
+
+<div class="container">
+    <div class="text">{{ title }}</div>
+    <br>
+    <table class="table table-bordered text-center">
+        <thead align="center">
+            <tr>
+                <th>编号</th>
+                <th>标题</th>
+                <th>通过人数</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for problem in problem_list %}
+            <tr>
+                <td>1</td>
+                <td><a href="../../problem/{{ problem.id }}">{{ problem.title }}</a></td>
+                <td>{{ problem.accept_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock base %}

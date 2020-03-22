@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 
 class Contest(models.Model):
     title  = models.TextField()
-    start_time = models.DateField(auto_now=False, auto_now_add=False)
-    end_time = models.DateField(auto_now=False, auto_now_add=False)
+    start_time = models.DateTimeField(auto_now=False, auto_now_add=False)
+    end_time = models.DateTimeField(auto_now=False, auto_now_add=False)
     password = models.CharField(max_length=15)
-    problem_list = models.TextField()
+    problem_id_list = models.TextField(default='[]')
     status = models.IntegerField(default=-1)
 
 class ContestUserRank(models.Model):

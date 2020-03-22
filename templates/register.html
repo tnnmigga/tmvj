@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block content %}
+{% block base %}
 <div style="width:40%;margin-left:auto;margin-right:auto;">
     <form action="." method="POST">
         {% csrf_token %}
@@ -36,4 +36,4 @@
         <input type="submit" value="注册" class="btn btn-primary btn-lg">
     </form>
 </div>
-{% endblock content %}
+{% endblock base %}
