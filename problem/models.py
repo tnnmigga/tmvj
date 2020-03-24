@@ -13,3 +13,6 @@ class Problem(models.Model):
     sample_input = models.TextField(default='无可奉告')
     sample_output = models.TextField(default='无可奉告')
     accept_count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title

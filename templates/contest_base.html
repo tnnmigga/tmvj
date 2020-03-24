@@ -1,90 +1,17 @@
-<!--
 {% extends 'base.html' %}
 
 {% block base %}
 
-{% block contest_base %}
-
-<div>
-比赛时间
-</div>
-<div>
-题目列表
-</div>
-{% endblock contest_base %}
-
-{% endblock base %}
--->
-
-<!doctype html>
-<html lang="en">
-
-
-<head>
-    <meta charset="utf-8">
-    <title>虚拟评测系统</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <style>
-        a:hover,
-        a:focus {
-            color: #2a6496;
-            text-decoration: underline;
-        }
-
-        a:focus {
-            outline: thin dotted #333;
-            outline: 5px auto -webkit-focus-ring-color;
-            outline-offset: -2px;
-        }
-
-        .table th,
-        .table td {
-            text-align: center;
-            vertical-align: middle !important;
-        }
-
-        .border {
-            border: 1px solid rgb(163, 163, 163);
-            border-radius: 5px;
-        }
-        .list_text{
-            color: slategray;
-            font-size: 15px;
-            margin-bottom: 8px;
-        }
-    </style>
-</head>
-
 <body>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'home' %}">虚拟评测</a>
-            </div>
-            <div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">比赛</a></li>
-                    <li><a href="#">作业</a></li>
-
-                </ul>
-            </div>
-
-        </div>
-    </nav>
-
-    <br>
-    <div class="container">
-        <h1>比赛名称</h1>
+    <div>
+        <h1>{{ contest.title }}</h1>
         <div style="width:75%;height:25px;">
             <a href="">题目</a>
             <a href="">我的提交</a>
             <a href="">所有提交</a>
             <a href="">榜单</a>
         </div>
-        <div style="background: sandybrown; width:77%;height:200px;display: inline-block;">
+        <div style="width:77%;height:200px;display: inline-block;">
             {% block contest_base %}
 
             {% endblock contest_base %}
@@ -92,30 +19,30 @@
         <div style=" width:23%;height:100px;float : right;">
             <div class="text-center">
                 <div style="margin-left: 7%;" class="border">
-                    <h2><small> 剩余时间 </small></h2>
+                    <h2 style="margin-top:5%"><small> 剩余时间 </small></h2>
                     <hr>
-                    <h3>3:10:58</h3>
+                    <h3 style="margin-bottom: 7%;">3:10:58</h3>
                 </div>
             </div>
             <div style="margin-left: 7%;margin-top:10%;" class="border">
                 <div style="height:15%">
-                    <h2 class="text-center"><small> 题目列表 </small></h2>
+                    <h2 style="margin-top:5%" class="text-center"><small> 题目列表 </small></h2>
                 </div>
                 <hr>
                 <div>
                     <ol style="margin-top: 0%;">
-                        <li class="list_text"><a href="#">
-                                测试测试测试测试测试测试
-                            </a></li>
-                        <li class="list_text"><a href="#">
-                                测试测试测试测试测试测试
-                            </a></li>
-                        <p>&nbsp;</p>
+                        
+                        {% for problem in problem_list %}
+                        <li class="list_text"><a href="{{ problem.id }}">
+                            {{ problem.title }}
+                        </a></li>
+                        {% endfor %}
+                    </ol>
                 </div>
-                </ol>
             </div>
         </div>
     </div>
 </body>
 
 </html>
+{% endblock base %}
