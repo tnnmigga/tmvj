@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block base %}
+<div style="width:77%;height:200px;display: inline-block;">
+    <div class="">
+        <h3>提交详细</h3>
+    </div>
+    <h3 style="margin-bottom: 0;"><small>编号</h3></small>
+    <div class="border">{{ judge.id }}</div>
+    <h3 style="margin-bottom: 0;"><small>提交用户</h3></small>
+    <div class="border">{{ judge.user.first_name }}{{ judge.user.last_name }}</div>
+    <h3 style="margin-bottom: 0;"><small>提交时间</h3></small>
+    <div class="border">{{ judge.submit_time }}</div>
+    <h3 style="margin-bottom: 0;"><small>提交代码</h3></small>
+    <div class="border">{{ judge.code }}</div>
+    <h3 style="margin-bottom: 0;"><small>评测结果</h3></small>
+    <div class="border">{{ judge.result }}</div>
+</div>
+<br>
+{% endblock base %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block base %}
+
+<div style="width:40%;margin-left:auto;margin-right:auto;">
+    {{ msg }}
+    <form action="{% url 'profile' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">账户</span>
+            <input type="text" class="form-control" placeholder="" name="username" value="{{ user.username }}">
+        </div>
+        {{ usernameExist }}
+        <br>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">姓</span>
+            <input type="text" class="form-control" value="{{ user.first_name }}" name="first_name">
+        </div>
+        <br>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon span3">名</span>
+            <input type="text" class="form-control" value="{{ user.last_name }}" name="last_name">
+        </div>
+        <br>
+        <input type="submit" value="修改" class="btn btn-primary btn-lg">
+    </form>
+</div>
+
+{% endblock base %}

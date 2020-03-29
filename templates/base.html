@@ -50,7 +50,7 @@
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">比赛</a></li>
+                    <li><a href="#">比赛</a></li>
                     <li><a href="#">作业</a></li>
                     {% if user.is_authenticated %}
                     <li class="dropdown">
@@ -60,7 +60,7 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#">个人资料</a></li>
+                            <li><a href="{% url 'profile' %}">个人资料</a></li>
                             <li class="divider"></li>
                             <li><a class="nav-link"
                                     href="Javascript:{document.getElementById('logout').submit()}">注销</a>
@@ -71,18 +71,14 @@
                             </li>
                         </ul>
                     </li>
+                    {% else %}
+                    <li >
+                        <a class="nav-link" href="{% url 'login' %}">登录</a>
+                    </li>
                     {% endif %}
                 </ul>
             </div>
-            {% if user.is_authenticated %}
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">登录</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'register' %}" tabindex="-1" aria-disabled="true">注册</a>
-            </li>
-            {% endif %}
+
         </div>
     </nav>
 

@@ -19,9 +19,9 @@ class Contest(models.Model):
 class ContestUserRank(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
-    rank = models.IntegerField()
-    solved = models.TextField(default='[]')
-    score = models.IntegerField()
+    solved_problem_id_list = models.TextField(default='[]')
+    score = models.IntegerField(default=0)
 
     def __str__(self):
-        return "%s | %s | %d" % (self.contest.title, self.user, self.rank)
+        return "%s | %s" % (self.contest.title, self.user)
+

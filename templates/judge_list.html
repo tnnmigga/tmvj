@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block base %}
+<div class="container">
+    <table class="table table-bordered text-center">
+        <thead align="center">
+            <tr>
+                <th>编号</th>
+                <th>用户</th>
+                <th>语言</th>
+                <th>提交时间</th>
+                <th>结果</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for judge in judge_list %}
+            <tr>
+                <td><a href="{{ judge.id }}">{{ judge.id }}</a></td>
+                <td>{{ judge.user.first_name }}{{ judge.user.last_name }}</td>
+                <td>{{ judge.submit_time }}</td>
+                <td>{{ judge.language }}</td>
+                <td>{{ judge.result }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% if is_paginated %}
+<div class="pagination center-block">
+    <span>共{{ page_obj.paginator.num_pages }}页</span>
+    <span id="paging" class="step-links" style="display: block;text-align: center">
+        {% if page_obj.has_previous %}
+        <span><a href="?page={{ page_obj.previous_page_number }}">上一页</a></span>
+        {% endif %}
+        <span class="active">{{ page_obj.number }}</span>
+        {% if page_obj.has_next %}
+        <span><a href="?page={{ page_obj.next_page_number }}">下一页</a></span>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+
+
+{% endblock base %}

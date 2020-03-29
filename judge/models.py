@@ -8,7 +8,6 @@ class UserSubmit(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
     contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
-    submit_id = models.IntegerField()
     submit_time = models.DateTimeField(auto_now=False, auto_now_add=False)
     code = models.TextField()
     language = models.CharField(max_length=10)

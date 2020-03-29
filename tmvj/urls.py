@@ -22,7 +22,7 @@ from home.views import homeView
 import account
 import contest
 import problem
-import vjudge
+import judge
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,5 +30,5 @@ urlpatterns = [
     path('account/',include('account.urls')),
     path('contest/',include('contest.urls')),
     path('problem/',include('problem.urls')),
-    #path('vjudge/',include('vjudge.urls')),
+    path('judge/',include('judge.urls')),
 ]

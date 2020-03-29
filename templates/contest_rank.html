@@ -1,0 +1,27 @@
+{% extends 'contest_base.html' %}
+{% block contest_base %}
+
+<div >
+    <br>
+    <table class="table table-bordered text-center">
+        <thead align="center">
+            <tr>
+                <th>排名</th>
+                <th>用户</th>
+                <th>分数</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user_rank in user_ranks %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ user_rank.user.first_name }}{{ user_rank.user.last_name }}</td>
+                <td>{{ user_rank.score }}</td>
+                    
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock contest_base %}
