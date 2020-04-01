@@ -59,7 +59,8 @@ def profile(request):
         }
         return render(request, 'profile.html',template_args)
     elif request.method == 'POST':
-        if _username_is_exist(request.POST['username']):
+        username = request.POST['username']
+        if _username_is_exist(username) and user.username != username:
             template_args = {
                 'user': user,
                 'msg': '用户名已经存在'

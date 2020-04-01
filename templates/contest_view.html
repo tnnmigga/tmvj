@@ -14,7 +14,7 @@
         <tbody>
             {% for problem in problem_list %}
             <tr>
-                <td>1</td>
+                <td>{{ forloop.counter }}</td>
                 <td><a href="{{ problem.id }}">{{ problem.title }}</a></td>
                 <td>{{ problem.accept_count }}</td>
             </tr>

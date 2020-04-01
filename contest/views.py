@@ -8,8 +8,10 @@ import time
 from .models import Contest
 from .models import ContestUserRank
 from problem.models import Problem
+from judge.models import UserSubmit
 
 from problem.views import problem_view
+from judge import vjudge
 
 # Create your views here.
     
@@ -39,23 +41,29 @@ def contest_view(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     problem_id_list = eval(contest.problem_id_list)
     problem_list = Problem.objects.filter(id__in=problem_id_list)
-    return render(request, 'contest_view.html', {'contest': contest, 'problem_list': problem_list})
+    template_args = {
+        'contest': contest,
+        'problem_list': problem_list
+    }
+    return render(request, 'contest_view.html', template_args)
 
 
 def problem_view(request, contest_id, problem_id):
     def _get_user_submit(request,contest_id,problem_id):
         user_submit={
-            'contest_id':get_object_or_404(Problem,pk=problem_id).problem_id,
-            'problem_id':problem_id,
-            'useruser_id':request.session.get('_auth_user_id'),
+            'contest':get_object_or_404(Contest,pk=contest_id),
+            'problem':get_object_or_404(Problem,pk=problem_id),
+            'user': get_object_or_404(User, pk=request.session.get('_auth_user_id')),
             'code':request.POST['code'],
             'language':request.POST['language']
         }
         return user_submit
     if request.user.is_authenticated():
         return redirect('login')
-    elif request.method=='GET':
-        contest = get_object_or_404(Contest, pk=contest_id)
+
+    contest = get_object_or_404(Contest, pk=contest_id)
+
+    if request.method=='GET':
         problem_id_list = eval(contest.problem_id_list)
         problem_list = Problem.objects.filter(id__in=problem_id_list)
         current_problem = get_object_or_404(Problem, pk=problem_id)
@@ -65,10 +73,14 @@ def problem_view(request, contest_id, problem_id):
             'contest': contest
         }
         return render(request, 'contest_problem_view.html', template_args)
-    elif request.method=='POST':
-        user_submit=_get_user_submit(request,contest_id,problem_id)
-        pass
-
+    elif request.method=='POST': #处理用户提交
+        user_submit = _get_user_submit(request, contest_id, problem_id)
+        vjudge.deal(user_submit)  #这里是多线程异步
+        template_args = {
+            'contest': contest,
+            'judge_list':User.usersubmit_set.all().order_by('sumbit_time')
+        }
+        return render(request,'judge_list.html',template_args)
 
 
 def contest_rank(request, contest_id):
@@ -84,8 +96,10 @@ def contest_rank(request, contest_id):
     return render(request, 'contest_rank.html', template_args)
 
 
-def deal_user_submit(request, contest_id):
-    
-    print(user_id,request.GET['language'])
-    template_args={}
-    return render(request, 'contest_rank.html', template_args)
+def judge_list(request, contest_id):
+    contest = get_object_or_404(Contest, pk=contest_id)
+    template_args = {
+        'contest': get_object_or_404(Contest, pk=contest_id),
+        'judge_list':contest.usersubmit_set.all().order_by('submit_time')
+    }
+    return render(request, 'judge_list.html', template_args)
