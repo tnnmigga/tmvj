@@ -21,13 +21,15 @@
 
 <h3 style="margin-bottom: 0;"><small>提交</h3></small>
 <div>
-    <form action="submit" method="GET">
-        <textarea name="code" id="" cols="80" rows="20" class="border" style="resize:none"></textarea>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <textarea name="code" id="" cols="80" rows="20" class="border"  style="resize:none" ></textarea>
         <br>
+        编程语言
         <input type="text" name="language" list="list_item" placeholder="请选择语言" class="border">
         <datalist id="list_item">
             <option>C</option>
-            <option>C++</option>
+            <option>C++ 11</option>
             <option>Java</option>
         </datalist>
         <input type="submit" class="btn">

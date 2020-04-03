@@ -23,6 +23,7 @@ import account
 import contest
 import problem
 import judge
+import manager
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,5 +31,6 @@ urlpatterns = [
     path('account/',include('account.urls')),
     path('contest/',include('contest.urls')),
     path('problem/',include('problem.urls')),
-    path('judge/',include('judge.urls')),
+    path('judge/', include('judge.urls')),
+    path('manager/', include('manager.urls')),
 ]
