@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block base %}
-
 <div style="width:40%;margin-left:auto;margin-right:auto;">
+    <h2><small>修改用户资料</small></h2>
     {{ msg }}
     <form action="{% url 'profile' %}" method="POST">
         {% csrf_token %}

@@ -10,6 +10,9 @@ judge_queue = []
 
 submit_status = threading.Semaphore(1)
 
+def init():
+    pass
+
 
 def _submit(user_submit_obj):
     user_submit_obj.result = 'Accept'
