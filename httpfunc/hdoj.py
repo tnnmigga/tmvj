@@ -37,7 +37,7 @@ class HdojAccount():
         }
 
         self.account = self.local_session.post(
-            url=url, data=data, headers=headers, allow_redirects=False)
+            url=url, data=data, headers=headers)
         print(self.account.status_code)
         #test = requests.get(url='http://acm.hdu.edu.cn/showproblem.php?pid=1037', cookies=self.account.cookies)
         #print(test.text)
@@ -80,4 +80,4 @@ class HdojAccount():
 
 hdu = HdojAccount('tangmingvj', 'qq123456')
 hdu.login()
-hdu.submit(1002, '0' * 500, 'cpp')
+#hdu.submit(1002, '0' * 500, 'cpp')

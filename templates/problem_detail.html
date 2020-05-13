@@ -17,21 +17,4 @@
     <div class="border">{{ problem.sample_output }}</div>
 </div>
 
-<h3 style="margin-bottom: 0;"><small>提交</h3></small>
-<div>
-    <textarea name="code" id="codetext" cols="80" rows="20" class="border"  style="resize:none" ></textarea>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <input type="text" name="language" list="list_item" placeholder="请选择语言" class="border">
-        <br>
-        <datalist id="list_item">
-            <option>C</option>
-            <option>C++ 11</option>
-            <option>Java</option>
-        </datalist>
-        <br>
-        <input type="submit" class="btn">
-    </form>
-</div>
-<br>
 {% endblock base %}

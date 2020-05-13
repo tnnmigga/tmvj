@@ -8,7 +8,7 @@ from .models import Problem
 
 def problem_view(request,problem_id):
     problem=get_object_or_404(Problem, pk=problem_id)
-    return render(request,'problem_view.html',{'problem':problem})
+    return render(request,'problem_detail.html',{'problem':problem})
 
 class ProblemListView(ListView):
     template_name = 'problem_list.html'

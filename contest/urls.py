@@ -10,5 +10,6 @@ urlpatterns = [
     path('<int:contest_id>/<int:problem_id>',views.problem_view),
     path('<int:contest_id>/rank',views.contest_rank),
     path('<int:contest_id>/judge', views.judge_list),
-    path('<int:contest_id>/mysubmit',views.my_submit),
+    path('<int:contest_id>/mysubmit', views.my_submit),
+    path('<int:contest_id>/proctor', views.proctor)
 ]
