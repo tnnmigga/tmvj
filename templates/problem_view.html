@@ -21,6 +21,7 @@
 <div>
     <textarea name="code" id="" cols="80" rows="20" class="border"  style="resize:none" ></textarea>
     <form action="" method="POST">
+        {% csrf_token %}
         <input type="text" name="language" list="list_item" placeholder="请选择语言" class="border">
         <br>
         <datalist id="list_item">

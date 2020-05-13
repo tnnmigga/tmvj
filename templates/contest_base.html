@@ -2,47 +2,49 @@
 
 {% block base %}
 
-<body>
-    <div>
-        <h1>{{ contest.title }}</h1>
-        <div style="width:75%;height:25px;">
-            <a href=".">题目列表</a> |
-            <a href="mysubmit">我的提交</a> |
-            <a href="judge">所有提交</a> |
-            <a href="rank">榜单排名</a>
-        </div>
-        <div style="width:77%;height:200px;display: inline-block;">
-            {% block contest_base %}
+<div>
+    <h1>{{ contest.title }}</h1>
+    <div style="width:75%;height:25px;">
+        <a href=".">题目列表</a> |
+        <a href="mysubmit">我的提交</a> |
+        <a href="judge">所有提交</a> |
+        <a href="rank">榜单排名</a>
+    </div>
+    <div style="width:77%;height:200px;display: inline-block;">
+        {% block contest_base %}
 
-            {% endblock contest_base %}
-        </div>
-        <div style=" width:23%;height:100px;float : right;">
-            <div class="text-center">
-                <div style="margin-left: 7%;" class="border">
-                    <h2 style="margin-top:5%"><small> 剩余时间 </small></h2>
-                    <hr>
-                    <h3 style="margin-bottom: 7%;">3:10:58</h3>
-                </div>
-            </div>
-            <div style="margin-left: 7%;margin-top:10%;" class="border">
-                <div style="height:15%">
-                    <h2 style="margin-top:5%" class="text-center"><small> 题目列表 </small></h2>
-                </div>
+        {% endblock contest_base %}
+    </div>
+    <div style=" width:23%;height:100px;float : right;">
+        <div class="text-center">
+            <div style="margin-left: 7%;" class="border">
+                <h2 style="margin-top:5%"><small> 剩余时间 </small></h2>
                 <hr>
-                <div>
-                    <ol style="margin-top: 0%;">
-                        
-                        {% for problem in problem_list %}
-                        <li class="list_text"><a href="{{ problem.id }}">
+                <h3 style="margin-bottom: 7%;">
+                    <span id="clock">
+                        <span id='h'>{{ time_h }}</span>:<span id='m'>{{ time_m }}</span>:<span id='s'>{{ time_s }}</span>
+                    </span>
+                    <script>rtime()</script>
+                </h3>
+            </div>
+        </div>
+        <div style="margin-left: 7%;margin-top:10%;" class="border">
+            <div style="height:15%">
+                <h2 style="margin-top:5%" class="text-center"><small> 题目列表 </small></h2>
+            </div>
+            <hr>
+            <div>
+                <ol style="margin-top: 0%;">
+
+                    {% for problem in problem_list %}
+                    <li class="list_text"><a href="{{ problem.id }}">
                             {{ problem.title }}
                         </a></li>
-                        {% endfor %}
-                    </ol>
-                </div>
+                    {% endfor %}
+                </ol>
             </div>
         </div>
     </div>
-</body>
+</div>
 
-</html>
 {% endblock base %}

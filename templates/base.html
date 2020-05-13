@@ -10,6 +10,23 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <script>
+        function rtime() {
+            var h = document.getElementById("h").innerText;
+            var m = document.getElementById("m").innerText;
+            var s = document.getElementById("s").innerText;
+            var remain_time = h * 60 * 60 + m * 60 + s*1;
+
+            if (remain_time > 0) {
+                remain_time -= 1;
+                document.getElementById("h").innerText = parseInt(remain_time / 3600);
+                document.getElementById("m").innerText = parseInt((remain_time % 3600) / 60);
+                document.getElementById("s").innerText = parseInt(remain_time % 60);
+                setTimeout("rtime()", 1000); //调取函数，调取频率毫秒 只掉一次
+            }
+        }
+    </script>
+
     <style>
         a:hover,
         a:focus {
@@ -52,13 +69,13 @@
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'profile' %}">用户</a></li>
                 {% if user.is_staff %}
-                    <li><a href="{% url 'manager' %}">管理</a></li>
+                <li><a href="{% url 'manager' %}">管理</a></li>
                 {% endif %}
                 <li><a class="nav-link" href="Javascript:{document.getElementById('logout').submit()}">注销</a>
-                <form action="{% url 'logout' %}" id='logout' method="POST">
-                    {% csrf_token %}
-                    <input type="hidden">
-                </form>
+                    <form action="{% url 'logout' %}" id='logout' method="POST">
+                        {% csrf_token %}
+                        <input type="hidden">
+                    </form>
                 </li>
                 {% else %}
                 <li>

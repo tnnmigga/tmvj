@@ -15,7 +15,9 @@ class JudgeListView(ListView):
 
 
 def judge_view(request, judge_id):
-    judge=get_object_or_404(UserSubmit, pk=judge_id)
+    judge = get_object_or_404(UserSubmit, pk=judge_id)
+    judge.code=judge.code.replace(r'\r\n', '<br>')
+    print(judge.code)
     return render(request, 'judge_view.html',{'judge':judge})
 
 

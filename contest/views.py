@@ -21,6 +21,15 @@ def _get_user_name(user_obj):
     return user_obj.first_name+user_obj.last_name
 
 
+def _get_remain_time(contest_obj):
+    now_time = timezone.now()
+    end_time = contest_obj.end_time
+    if end_time < now_time:
+        return 0
+    else:
+        remain_time = end_time - now_time
+        return remain_time.seconds+remain_time.days*24*60*60
+
 class ContestListView(ListView):
     template_name = 'contest_list.html'
     paginate_by = 30
@@ -49,13 +58,16 @@ class UserRankView(ListView):
 
 
 def contest_view(request, contest_id):
-    print(str(request.session))
     contest = get_object_or_404(Contest, pk=contest_id)
     problem_id_list = eval(contest.problem_id_list)
     problem_list = Problem.objects.filter(id__in=problem_id_list)
+    remain_time = _get_remain_time(contest)
     template_args = {
         'contest': contest,
-        'problem_list': problem_list
+        'problem_list': problem_list,
+        'time_h': remain_time // 3600,
+            'time_m': (remain_time % 3600) // 60,
+            'time_s': remain_time % 60
     }
     return render(request, 'contest_view.html', template_args)
 
@@ -79,10 +91,14 @@ def problem_view(request, contest_id, problem_id):
         problem_id_list = eval(contest.problem_id_list)
         problem_list = Problem.objects.filter(id__in=problem_id_list)
         current_problem = get_object_or_404(Problem, pk=problem_id)
+        remain_time = _get_remain_time(contest)
         template_args = {
             'current_problem': current_problem,
             'problem_list': problem_list,
-            'contest': contest
+            'contest': contest,
+            'time_h': remain_time // 3600,
+            'time_m': (remain_time % 3600) // 60,
+            'time_s': remain_time % 60
         }
         return render(request, 'contest_problem_view.html', template_args)
     elif request.method == 'POST':  # 处理用户提交

@@ -6,6 +6,7 @@
         <thead align="center">
             <tr>
                 <th>编号</th>
+                <th>题号</th>
                 <th>用户</th>
                 <th>语言</th>
                 <th>提交时间</th>
@@ -15,7 +16,8 @@
         <tbody>
             {% for judge in judge_list %}
             <tr>
-                <td><a href="{{ judge.id }}">{{ judge.id }}</a></td>
+                <td><a href="http://127.0.0.1:8000/judge/{{ judge.id }}">{{ judge.id }}</a></td>
+                <td>{{ judge.problem.id }}</td>
                 <td>{{ judge.user.first_name }}{{ judge.user.last_name }}</td>
                 <td>{{ judge.language }}</td>
                 <td>{{ judge.submit_time }}</td>

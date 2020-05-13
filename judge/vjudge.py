@@ -16,12 +16,13 @@ def init():
 
 def _submit(user_submit_obj):
     user_submit_obj.result = 'Accept'
+    #get_result(user_submit_obj)
     user_submit_obj.save()
     if user_submit_obj.result == 'Accept':
         user_rank = ContestUserRank.objects.get(contest=user_submit_obj.contest, user=user_submit_obj.user)
         user_rank.add_solved_problem(user_submit_obj.problem.id)
 
-def judge_monitor():
+def get_result(user_submit_obj):
     pass
 
 

@@ -21,7 +21,7 @@
 
           {% if contest.status == -1 %}
           尚未开始
-          {% elif contest.status == 0 %}
+          {% elif contest.status == 0 or user.is_staff %}
           <a href="{{ contest.id }}">进入</a>
           {% else %}
           已经结束
