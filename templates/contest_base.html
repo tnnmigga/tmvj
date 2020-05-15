@@ -7,7 +7,9 @@
     <div style="width:75%;height:25px;">
         <a href=".">题目列表</a> |
         <a href="mysubmit">我的提交</a> |
+        {% if user.is_staff %}
         <a href="judge">所有提交</a> |
+        {% endif %}
         <a href="rank">榜单排名</a>
         {% if user.is_staff %}
         | <a href="proctor">检查抄袭</a>
